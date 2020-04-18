@@ -37,6 +37,11 @@ class Window {
     const dt = document.querySelector('main')
     dt.appendChild(div)
 
+    // start application
+    const App = require(`./${app}.js`)
+    const application = new App(div)
+    application.init()
+
     // add events handlers on window
     this.addCloseEvent()
     this.addDragEvent()
@@ -47,7 +52,7 @@ class Window {
    * event handler to close a window
    */
   addCloseEvent () {
-    console.log(this.el)
+    // console.log(this.el)
     this.el.querySelector('.close').addEventListener('click', event => {
       this.el.remove()
     })
@@ -61,7 +66,6 @@ class Window {
       this.el.style.zIndex = 1000
     })
     this.el.addEventListener('blur', event => {
-      console.log('blur!')
       this.el.style.zIndex = 1
     })
   }

@@ -89,3 +89,30 @@ span.fa {
 .window div .header .close {
     cursor: pointer;
 }
+
+/* CHAT */
+.chat-window {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.chat-window .body {
+    flex-grow: 1;
+}
+.chat-window .body > div {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+}
+.chat-window .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chat-window .username,
+.chat-window .chat {
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+}

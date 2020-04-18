@@ -75,10 +75,10 @@ class Desktop {
   getXY (app) {
     const wh = window.innerHeight
     const ww = window.innerWidth
-    console.log(`width: ${ww}`)
-    console.log(`height: ${wh}`)
-    console.log(`offsetX: ${this[app + 'OffsetX']}`)
-    console.log(`offsetY: ${this[app + 'OffsetY']}`)
+    // console.log(`width: ${ww}`)
+    // console.log(`height: ${wh}`)
+    // console.log(`offsetX: ${this[app + 'OffsetX']}`)
+    // console.log(`offsetY: ${this[app + 'OffsetY']}`)
 
     // if app window gets too close to browser's right edge
     if (this[app + 'OffsetX'] + this[app + 'X'] > ww - 200) {
