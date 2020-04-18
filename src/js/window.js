@@ -1,8 +1,15 @@
-'use strict'
+/**
+ * Module for managing Windows
+ * @author Olga Christensen
+ */
 const chatTemp = require('./templates/chat-temp.js')
 const memoryTemp = require('./templates/memory-temp.js')
 const todoTemp = require('./templates/todo-temp.js')
 
+/**
+ * Window manager
+ * @constructor
+ */
 class Window {
   constructor (id, x, y) {
     this.el = undefined
@@ -14,7 +21,10 @@ class Window {
     this.isFocused = false
   }
 
-  // create app's div, add template and attach to DOM
+  /**
+   * create app's div, add template and attach to DOM
+   * @param {string} app - app name
+   */
   openWindow (app) {
     const div = document.createElement('div')
     div.setAttribute('class', `window ${app}`)
@@ -33,6 +43,9 @@ class Window {
     this.addFocusEvent()
   }
 
+  /**
+   * event handler to close a window
+   */
   addCloseEvent () {
     console.log(this.el)
     this.el.querySelector('.close').addEventListener('click', event => {
@@ -40,6 +53,9 @@ class Window {
     })
   }
 
+  /**
+   * event handler to set/remove focus
+   */
   addFocusEvent () {
     this.el.addEventListener('focus', event => {
       this.el.style.zIndex = 1000
@@ -50,6 +66,9 @@ class Window {
     })
   }
 
+  /**
+   * event handler for dragging a window
+   */
   addDragEvent () {
     let offsetx, offsety
 
@@ -89,6 +108,10 @@ class Window {
     }
   }
 
+  /**
+   * Select template for the app
+   * @param {string} app - app name
+   */
   loadTemplate (app) {
     switch (app) {
       case 'chat':
@@ -100,10 +123,10 @@ class Window {
     }
   }
 
-  getElement () {
-    return this.el
-  }
-
+  /**
+   * add CSS rules to the window
+   * for placing it on the Desktop
+   */
   setPosition () {
     this.el.style.left = `${this.x}px`
     this.el.style.top = `${this.y}px`

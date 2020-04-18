@@ -1,6 +1,13 @@
-'use strict'
+/**
+ * Module for managing Desktop
+ * @author Olga Christensen
+ */
 const DTW = require('./window')
 
+/**
+ * Desktop manager
+ * @constructor
+ */
 class Desktop {
   constructor () {
     // track number of initiated windows
@@ -25,7 +32,10 @@ class Desktop {
     this.todoOffsetY = 30
   }
 
-  // enable starting apps from Dock on click
+  /**
+   * enable launching apps from Dock on click
+   * @todo add 'quit app'
+   */
   initDock () {
     const dock = document.getElementById('dock')
     dock.addEventListener('click', event => {
