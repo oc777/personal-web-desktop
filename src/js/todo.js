@@ -91,7 +91,7 @@ class Todo {
     if (parent === 'ul') {
       const tempTodo = this.el.querySelector('#todo-item')
       const todoItem = document.importNode(tempTodo.content, true)
-
+      todoItem.querySelector('li').setAttribute('id', id)
       todoItem.querySelector('p').textContent = txt
       list.appendChild(todoItem)
     }
@@ -159,16 +159,31 @@ class Todo {
 
   manageTodo (el) {
     console.log(el)
+    const id = el.parentNode.id
     if (el.className === 'far fa-circle') {
       // set item as done
       el.setAttribute('class', 'far fa-check-circle')
+      // move to the end of the list
+      const li = el.closest('li')
+      const clone = li.cloneNode(true)
+      li.closest('ul').appendChild(clone)
+      li.remove()
+      // update status in storage
+      this.updateStatus(id, 'done')
     }
 
     if (el.className === 'far fa-times-circle') {
       // delete item
       el.closest('li').remove()
-      // el.remove()
+      this.updateStatus(id, 'deleted')
     }
+  }
+
+  updateStatus (todoId, status) {
+    // update class obj first
+    const o = this.todoItems[this.todoItems.findIndex(x => x.id === parseInt(todoId))]
+    o.status = status
+    window.localStorage.setItem(this.todoListId, JSON.stringify(this.todoItems))
   }
 }
 // <i class="far fa-check-circle"></i>

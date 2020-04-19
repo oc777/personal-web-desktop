@@ -24,5 +24,12 @@ module.exports = `
             <i class="far fa-times-circle"></i>
         </li>
     </template>
+    <template id="done-item">
+        <li class="completed">
+            <i class="far fa-check-circle"></i>
+            <p></p>
+            <i class="far fa-times-circle"></i>
+        </li>
+    </template>
 </div>
 `
