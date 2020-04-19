@@ -76,7 +76,7 @@ class Todo {
   }
 
   // render a LI element
-  printListEl (parent, txt, id) {
+  printListEl (parent, txt, id, status) {
     const list = this.el.querySelector(parent)
     const li = document.createElement('li')
 
@@ -89,11 +89,18 @@ class Todo {
 
     // todo item
     if (parent === 'ul') {
-      const tempTodo = this.el.querySelector('#todo-item')
-      const todoItem = document.importNode(tempTodo.content, true)
-      todoItem.querySelector('li').setAttribute('id', id)
-      todoItem.querySelector('p').textContent = txt
-      list.appendChild(todoItem)
+      let template, node
+      if (status === 'pending') {
+        template = this.el.querySelector('#todo-item')
+        node = document.importNode(template.content, true)
+      } else if (status === 'done') {
+        template = this.el.querySelector('#done-item')
+        node = document.importNode(template.content, true)
+      }
+
+      node.querySelector('li').setAttribute('id', id)
+      node.querySelector('p').textContent = txt
+      list.appendChild(node)
     }
   }
 
@@ -146,7 +153,7 @@ class Todo {
     // if items already exist
     if (todoItems.length !== 0) {
       this.todoItems.forEach(todo =>
-        this.printListEl('ul', todo.title, todo.id)
+        this.printListEl('ul', todo.title, todo.id, todo.status)
       )
     }
 
@@ -176,13 +183,18 @@ class Todo {
       // delete item
       el.closest('li').remove()
       this.updateStatus(id, 'deleted')
+      this.deleteTodo(id)
     }
   }
 
   updateStatus (todoId, status) {
     // update class obj first
-    const o = this.todoItems[this.todoItems.findIndex(x => x.id === parseInt(todoId))]
-    o.status = status
+    const i = this.todoItems.findIndex(x => x.id === parseInt(todoId))
+    const o = this.todoItems[i]
+    status === 'done'
+      ? o.status = status
+      : this.todoItems.splice(i, 1)
+
     window.localStorage.setItem(this.todoListId, JSON.stringify(this.todoItems))
   }
 }
