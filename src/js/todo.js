@@ -100,7 +100,10 @@ class Todo {
 
       node.querySelector('li').setAttribute('id', id)
       node.querySelector('p').textContent = txt
-      list.appendChild(node)
+
+      status === 'pending'
+        ? list.prepend(node)
+        : list.appendChild(node)
     }
   }
 
@@ -112,7 +115,7 @@ class Todo {
       title: todo,
       status: 'pending'
     }
-    this.printListEl('ul', todo, todoItem.id)
+    this.printListEl('ul', todo, todoItem.id, 'pending')
     this.todoItems.push(todoItem)
     console.log(this.todoItems)
     window.localStorage.setItem(this.todoListId, JSON.stringify(this.todoItems))
