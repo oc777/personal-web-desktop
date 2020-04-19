@@ -69,8 +69,10 @@ class Window {
       this.el.style.zIndex = 1000
     })
     this.el.addEventListener('blur', event => {
-      this.el.style.zIndex = 1
-      console.log('blur')
+      if (!event.currentTarget.contains(event.relatedTarget)) {
+        this.el.style.zIndex = 1
+        console.log('blur')
+      }
     })
   }
 

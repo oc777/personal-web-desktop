@@ -208,6 +208,7 @@ span.fa {
 .todo-window ul li {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 .todo-window ul li p {
     width: 80%;
@@ -217,7 +218,7 @@ span.fa {
     cursor: pointer;
 }
 
-.fa-times-circle:hover {
+li .fa-times-circle:hover {
     color: red;
 }
 .fa-circle:hover {
