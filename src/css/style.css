@@ -73,7 +73,7 @@ span.fa {
 .window {
     width: 280px;
     height: 350px;
-    background-color: #fff;
+    background-color: #edfaff;
     position: absolute;
     border: solid 1px grey;
     border-radius: 4px;
@@ -118,13 +118,25 @@ span.fa {
     flex-direction: column;
     justify-content: space-evenly;
 }
+.chat-window .username {
+    text-align: center;
+    padding: 20px;
+    color: gray;
+}
+.chat-window .username input {
+    height: 35px;
+    padding: 0 10px;
+    background-color: rgb(230, 230, 230);
+    border: none;
+    outline: none;
+}
 .chat-window .chat {
     display: none;
 }
 
 .chat-window .chat .conversation {
     flex: 1;
-    background-color: rgb(230, 230, 230);
+    background-color: #edfaff;
 }
 
 .chat-window .chat .msg {
@@ -135,8 +147,10 @@ span.fa {
     width: 100%;
     border: none;
     outline: none;
+    padding: 10px;
     padding-right: 40px;
     color: gray;
+    background-color: rgb(230, 230, 230);
 }
 /* .chat-window .chat .msg p {
     position: absolute;

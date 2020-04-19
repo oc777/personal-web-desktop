@@ -10,12 +10,12 @@ module.exports = `
         </div-->
         <div class="username">
             <p>Type your username and hit <i>enter</i> to start chatting!</p>
-            <input type="text" name="username" required />
+            <input type="text" name="username" placeholder="your username" required />
         </div>
         <div class="chat">
             <div class="conversation"></div>
             <div class="msg">
-                <textarea id="msg" rows="3"> </textarea>
+                <textarea id="msg" rows="3" placeholder="type your message here..."></textarea>
                 <!--p class="btn"><span class="fa"><i class="far fa-paper-plane"></i></span></p-->
             </div>
             <template>

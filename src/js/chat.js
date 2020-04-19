@@ -83,7 +83,7 @@ class Chat {
     })
 
     this.socket.addEventListener('error', event => {
-      console.log(event.data)
+      // console.log(event.data)
       this.printMessage(JSON.parse(event.data))
     })
   }
@@ -102,7 +102,7 @@ class Chat {
   }
 
   printMessage (msg) {
-    console.log(msg)
+    // console.log(msg)
     const conversation = this.el.querySelector('.conversation')
     const temp = this.el.querySelector('template')
     const msgBlock = document.importNode(temp.content, true)
@@ -125,7 +125,7 @@ class Chat {
   }
 
   showEmoji (txt) {
-    console.log(txt)
+    // console.log(txt)
     let msg = txt
     msg = msg.replace(/(:\)|\(:|:-\))/gi, '\u{1f642}')
     msg = msg.replace(/(:\(|\):|:-\()/gi, '\u{1f641}')
