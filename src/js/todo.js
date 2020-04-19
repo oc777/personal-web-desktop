@@ -24,7 +24,9 @@ class Todo {
     const list = this.el.querySelector('ol')
     list.addEventListener('click', e => this.openList(e))
 
-    if (window.localStorage.getItem('todos') !== null) this.getAllTodos()
+    if (window.localStorage.getItem('todos') !== null) {
+      this.todos = this.getAllTodoLists()
+    }
   }
 
   getInput (input, e, callback) {
@@ -48,18 +50,38 @@ class Todo {
 
   addNewList (title) {
     console.log(title)
-    const list = this.el.querySelector('ol')
-    const li = document.createElement('li')
-    li.textContent = title
-    list.prepend(li)
+    // const list = this.el.querySelector('ol')
+    // const li = document.createElement('li')
+    // li.textContent = title
+    // list.prepend(li)
+    this.printListEl('ol', title)
     const todoList = {
-      id: 1,
+      id: Date.now(),
       title: title
     }
+    this.todos.push(todoList)
+    window.localStorage.setItem('todos', JSON.stringify(this.todos))
+  }
+
+  printListEl (parent, txt) {
+    const list = this.el.querySelector(parent)
+    const li = document.createElement('li')
+    li.textContent = txt
+    list.prepend(li)
   }
 
   addNewTodo (todo) {
     console.log(todo)
+  }
+
+  getAllTodoLists () {
+    const todos = window.localStorage.getItem('todos')
+    console.log(JSON.parse(todos))
+    const lists = JSON.parse(todos)
+
+    lists.forEach(list => this.printListEl('ol', list.title))
+
+    return lists
   }
 }
 // <i class="far fa-check-circle"></i>
