@@ -65,11 +65,11 @@ class Todo {
   // render new list and save to storage
   addNewList (title) {
     // console.log(title)
-    this.printListEl('ol', title)
     const todoList = {
       id: Date.now(),
       title: title
     }
+    this.printListEl('ol', title, todoList.id)
     this.todoLists.push(todoList)
     window.localStorage.setItem('todoLists', JSON.stringify(this.todoLists))
   }
@@ -99,12 +99,12 @@ class Todo {
   // render new todo item and add to storage
   addNewTodo (todo) {
     // console.log(todo)
-    this.printListEl('ul', todo)
     const todoItem = {
       id: Date.now(),
       title: todo,
       status: 'pending'
     }
+    this.printListEl('ul', todo, todoItem.id)
     this.todoItems.push(todoItem)
     console.log(this.todoItems)
     window.localStorage.setItem(this.todoListId, JSON.stringify(this.todoItems))
