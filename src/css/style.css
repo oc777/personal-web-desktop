@@ -80,6 +80,7 @@ span.fa {
 }
 
 .window div .header {
+    flex-shrink: 0;
     display: flex;
     justify-content: space-between;
     height: 40px;
@@ -147,7 +148,9 @@ span.fa {
     margin: 5px 10px;
 
 } */
-
+.chat-window .chat .conversation {
+    overflow: scroll;
+}
 .chat-window .chat .conversation .block {
     color: gray;
     padding: 5px;

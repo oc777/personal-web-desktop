@@ -110,6 +110,9 @@ class Chat {
     msgBlock.querySelector('.txt').textContent = msg.data
     msgBlock.querySelector('.user').textContent = ` ${msg.username} ${this.timestamp()} `
     conversation.appendChild(msgBlock)
+
+    // scroll to bottom
+    conversation.scrollTop = conversation.scrollHeight
   }
 
   timestamp () {
