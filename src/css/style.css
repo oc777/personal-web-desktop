@@ -175,8 +175,14 @@ span.fa {
 
 
 /* TODO */
+.todo-window {
+    height: 100%;
+    padding-bottom: 45px;
+}
 .todo-window .body {
+    height: 100%;
     padding: 20px;
+    overflow-y: scroll;
 }
 .todo-window h1 {
     color: gray;
