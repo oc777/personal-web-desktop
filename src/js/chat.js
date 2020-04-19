@@ -45,7 +45,7 @@ class Chat {
       const msg = input.value
       e.preventDefault()
       input.value = ''
-      console.log(msg)
+      // console.log(msg)
       callback(msg)
     }
   }
@@ -93,7 +93,7 @@ class Chat {
     // prepare msg object
     const data = {
       type: 'message',
-      data: text,
+      data: this.showEmoji(text),
       username: this.username,
       channel: this.channel,
       key: this.key
@@ -122,6 +122,14 @@ class Chat {
     if (hrs < 10) hrs = `0${hrs}`
     if (min < 10) min = `0${min}`
     return `${hrs}:${min}`
+  }
+
+  showEmoji (txt) {
+    console.log(txt)
+    let msg = txt
+    msg = msg.replace(/(:\)|=\)|:-\))/gi, '\u{1f642}')
+
+    return msg
   }
 }
 
