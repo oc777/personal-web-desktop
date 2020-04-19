@@ -36,6 +36,7 @@ body, html {
     height: 100%;
     min-width: 1000px;
     width: 100%;
+    font-family: sans-serif;
 }
 body {
     background-image: url('/image/cosmos.jpg');
@@ -45,6 +46,7 @@ body {
 
 * {
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 h1 {
@@ -54,7 +56,7 @@ h1 {
 #dock {
     position: absolute;
     bottom: 0;
-    height: 35px;
+    height: 45px;
     width: 90%;
     margin-left: 5%;
     background-color: rgba(0,0,0,0.5);
@@ -80,10 +82,10 @@ span.fa {
 .window div .header {
     display: flex;
     justify-content: space-between;
-    height: 30px;
+    height: 40px;
     padding: 5px;
     cursor: move;
-    background-image: linear-gradient(to right, #13192f, #95b6c2);
+    background-image: linear-gradient(to right, #13192f, #65828c, #13192f);
 }
 
 .window div .header .close {
@@ -112,7 +114,44 @@ span.fa {
 }
 .chat-window .username,
 .chat-window .chat {
-    display: none;
     flex-direction: column;
     justify-content: space-evenly;
+}
+.chat-window .chat {
+    display: none;
+}
+
+.chat-window .chat .conversation {
+    flex: 1;
+    background-color: rgb(230, 230, 230);
+}
+
+.chat-window .chat .msg {
+    /* display: flex; */
+    position: relative;
+}
+.chat-window .chat .msg textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding-right: 40px;
+    color: gray;
+}
+/* .chat-window .chat .msg p {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.chat-window .chat .msg span.fa {
+    display: block;
+    margin: 5px 10px;
+
+} */
+
+.chat-window .chat .conversation .block {
+    color: gray;
+    padding: 5px;
+}
+.chat-window .chat .conversation .block .user {
+    font-weight: bold;
 }

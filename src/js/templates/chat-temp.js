@@ -5,16 +5,25 @@ module.exports = `
         <span class="fa close"><i class="far fa-times-circle"></i></span>
     </div>
     <div class="body">
-        <div class="loading">
+        <!--div class="loading">
             <span class="fa"><i class="fas fa-sync-alt fa-spin"></i></span>
-        </div>
+        </div-->
         <div class="username">
             <p>Type your username and hit <i>enter</i> to start chatting!</p>
             <input type="text" name="username" required />
         </div>
         <div class="chat">
             <div class="conversation"></div>
-            <div class="msg"></div>
+            <div class="msg">
+                <textarea id="msg" rows="3"> </textarea>
+                <!--p class="btn"><span class="fa"><i class="far fa-paper-plane"></i></span></p-->
+            </div>
+            <template>
+                <div class="block">
+                    <p class="user"></p>
+                    <p class="txt"></p>
+                </div>
+            </template>
         </div>
     </div>
 </div>
