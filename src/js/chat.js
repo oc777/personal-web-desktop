@@ -127,7 +127,16 @@ class Chat {
   showEmoji (txt) {
     console.log(txt)
     let msg = txt
-    msg = msg.replace(/(:\)|=\)|:-\))/gi, '\u{1f642}')
+    msg = msg.replace(/(:\)|\(:|:-\))/gi, '\u{1f642}')
+    msg = msg.replace(/(:\(|\):|:-\()/gi, '\u{1f641}')
+    msg = msg.replace(/(:\p|=\p|:-\p)/gi, '\u{1f61c}')
+    msg = msg.replace(/(\8p|\8-p)/gi, '\u{1f92a}')
+    msg = msg.replace(/(=-\)|=\))/gi, '\u{1f600}')
+    msg = msg.replace(/(:[D]|:-[D])/gi, '\u{1f601}')
+    msg = msg.replace('<3', '\u{1F5A4}')
+    msg = msg.replace('</3', '\u{1F494}')
+    msg = msg.replace('8)', '\u{1F60E}')
+    msg = msg.replace('B)', '\u{1F913}')
 
     return msg
   }
