@@ -46,6 +46,9 @@ class Window {
     this.addCloseEvent()
     this.addDragEvent()
     this.addFocusEvent()
+
+    // set focus
+    this.el.focus()
   }
 
   /**
@@ -67,6 +70,7 @@ class Window {
     })
     this.el.addEventListener('blur', event => {
       this.el.style.zIndex = 1
+      console.log('blur')
     })
   }
 
