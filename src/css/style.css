@@ -172,3 +172,35 @@ span.fa {
 .chat-window .chat .conversation .block .user {
     font-weight: bold;
 }
+
+
+/* TODO */
+.todo-window .body {
+    padding: 20px;
+}
+.todo-window h1 {
+    color: gray;
+    text-align: center;
+    font-weight: bold;
+}
+
+.todo-window input {
+    height: 35px;
+    padding: 0 10px;
+    background-color: rgb(230, 230, 230);
+    border: none;
+    outline: none;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.todo-window ol li {
+    display: list-item;
+    list-style-position: inside;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.todo-window ol li:hover {
+    text-decoration: underline;
+}
