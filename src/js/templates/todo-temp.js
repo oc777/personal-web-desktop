@@ -12,10 +12,10 @@ module.exports = `
         </div>
         <div class="todos"></div>
     </div>
-    <template id="todo">
+    <template id="todo-items">
         <h1></h1>
         <input type="text" name="todo" placeholder="Add new TODO & hit enter"></input>
-        <ul></ul>
+        <ul class="todo-list"></ul>
     </template>
     <template id="todo-item">
         <li class="pending">

@@ -24,14 +24,15 @@ class Todo {
 
     // listen to clicks on all elements
     this.el.addEventListener('click', e => {
-      console.log(e.target)
+      console.log(e)
       if (e.target.parentNode.nodeName === 'OL') {
         // ol - todo lists
         console.log('todo lists')
         this.openList(e.target.id, e.target.innerText)
-      } else if (e.target.parentNode.nodeName === 'UL') {
+      } else if (e.target.closest('.todo-list') && e.target.nodeName !== 'P') {
         // ul - todo items in a specific list
         console.log('todo items')
+        this.manageTodo(e.target)
       }
     })
 
@@ -128,7 +129,7 @@ class Todo {
     this.todoItems = []
     if (window.localStorage.getItem(id) === null) {
       window.localStorage.setItem(id, '')
-    } else {
+    } else if (window.localStorage.getItem(id) !== '') {
       const todos = window.localStorage.getItem(id)
       this.todoItems = JSON.parse(todos)
     }
@@ -136,7 +137,7 @@ class Todo {
     // render view
     this.el.querySelector('.lists').style.display = 'none'
     const todoPage = this.el.querySelector('.todos')
-    const tempTodo = this.el.querySelector('#todo')
+    const tempTodo = this.el.querySelector('#todo-items')
     const todoItems = document.importNode(tempTodo.content, true)
 
     todoItems.querySelector('h1').textContent = title
@@ -154,6 +155,20 @@ class Todo {
     input.addEventListener('keydown', e => {
       this.getInput(input, e, this.addToList.bind(this))
     })
+  }
+
+  manageTodo (el) {
+    console.log(el)
+    if (el.className === 'far fa-circle') {
+      // set item as done
+      el.setAttribute('class', 'far fa-check-circle')
+    }
+
+    if (el.className === 'far fa-times-circle') {
+      // delete item
+      el.closest('li').remove()
+      // el.remove()
+    }
   }
 }
 // <i class="far fa-check-circle"></i>
