@@ -204,3 +204,22 @@ span.fa {
 .todo-window ol li:hover {
     text-decoration: underline;
 }
+
+.todo-window ul li {
+    display: flex;
+    justify-content: space-between;
+}
+.todo-window ul li p {
+    width: 80%;
+}
+
+.todo-window ul li i {
+    cursor: pointer;
+}
+
+.fa-times-circle:hover {
+    color: red;
+}
+.fa-circle:hover {
+    color: green;
+}

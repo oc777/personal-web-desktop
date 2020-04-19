@@ -12,6 +12,7 @@ class Todo {
     this.el = element
     this.todos = []
     this.todo = {}
+    this.todoListId = undefined
   }
 
   init () {
@@ -21,8 +22,17 @@ class Todo {
       this.getInput(input, e, this.addToList.bind(this))
     })
 
-    const list = this.el.querySelector('ol')
-    list.addEventListener('click', e => this.openList(e))
+    this.el.addEventListener('click', e => {
+      console.log(e.target)
+      if (e.target.parentNode.nodeName === 'OL') {
+        console.log('todo lists')
+        this.openList(e.target.id, e.target.innerText)
+      } else if (e.target.parentNode.nodeName === 'UL') {
+        console.log('todo items')
+      }
+    })
+    // const list = this.el.querySelector('ol')
+    // list.addEventListener('click', e => this.openList(e))
 
     if (window.localStorage.getItem('todos') !== null) {
       this.todos = this.getAllTodoLists()
@@ -63,15 +73,35 @@ class Todo {
     window.localStorage.setItem('todos', JSON.stringify(this.todos))
   }
 
-  printListEl (parent, txt) {
+  printListEl (parent, txt, id) {
     const list = this.el.querySelector(parent)
     const li = document.createElement('li')
-    li.textContent = txt
-    list.prepend(li)
+
+    if (parent === 'ol') {
+      li.setAttribute('id', id)
+      li.textContent = txt
+      list.prepend(li)
+    }
+
+    if (parent === 'ul') {
+      const tempTodo = this.el.querySelector('#todo-item')
+      const todoItem = document.importNode(tempTodo.content, true)
+
+      todoItem.querySelector('p').textContent = txt
+      list.appendChild(todoItem)
+    }
   }
 
   addNewTodo (todo) {
     console.log(todo)
+    this.printListEl('ul', todo)
+    const todoItem = {
+      id: Date.now(),
+      title: todo,
+      status: 'pending'
+    }
+    this.todo = todoItem
+    window.localStorage.setItem(this.todoListId, this.todo)
   }
 
   getAllTodoLists () {
@@ -79,9 +109,31 @@ class Todo {
     console.log(JSON.parse(todos))
     const lists = JSON.parse(todos)
 
-    lists.forEach(list => this.printListEl('ol', list.title))
+    lists.forEach(list => this.printListEl('ol', list.title, list.id))
 
     return lists
+  }
+
+  openList (id, title) {
+    this.todoListId = id
+    if (window.localStorage.getItem('id') === null) {
+      window.localStorage.setItem(id, '')
+    } else {
+      this.todo = window.localStorage.getItem(id)
+    }
+
+    this.el.querySelector('.lists').style.display = 'none'
+    const todoPage = this.el.querySelector('.todos')
+    const tempTodo = this.el.querySelector('#todo')
+    const todoItems = document.importNode(tempTodo.content, true)
+
+    todoItems.querySelector('h1').textContent = title
+    todoPage.appendChild(todoItems)
+
+    const input = this.el.querySelector('input[name=todo]')
+    input.addEventListener('keydown', e => {
+      this.getInput(input, e, this.addToList.bind(this))
+    })
   }
 }
 // <i class="far fa-check-circle"></i>

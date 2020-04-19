@@ -18,7 +18,7 @@ module.exports = `
         <ul></ul>
     </template>
     <template id="todo-item">
-        <li>
+        <li class="pending">
             <i class="far fa-circle"></i>
             <p></p>
             <i class="far fa-times-circle"></i>
