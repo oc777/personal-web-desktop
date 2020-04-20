@@ -70,6 +70,10 @@ span.fa {
     margin: 0 15px;
 }
 
+span.fa:hover {
+    color: grey;
+}
+
 .window {
     width: 280px;
     height: 350px;
@@ -91,6 +95,17 @@ span.fa {
 
 .window div .header .close {
     cursor: pointer;
+}
+.window div .header .close:hover {
+    color: grey;
+}
+
+.window div .header .title {
+    color: #bfbfbf;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 34px;
+    text-transform: uppercase;
 }
 
 /* CHAT */

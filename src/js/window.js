@@ -2,9 +2,6 @@
  * Module for managing Windows
  * @author Olga Christensen
  */
-const chatTemp = require('./templates/chat-temp.js')
-const memoryTemp = require('./templates/memory-temp.js')
-const todoTemp = require('./templates/todo-temp.js')
 
 /**
  * Window manager
@@ -30,7 +27,8 @@ class Window {
     div.setAttribute('class', `window ${app}`)
     // enables focus/blur events on divs
     div.setAttribute('tabindex', this.id)
-    div.innerHTML = this.loadTemplate(app)
+    const template = require(`./templates/${app}-temp.html`)
+    div.innerHTML = template
     this.el = div
     this.setPosition()
 
@@ -115,21 +113,6 @@ class Window {
           this.el.style.top = `${this.y}px`
         }
       }
-    }
-  }
-
-  /**
-   * Select template for the app
-   * @param {string} app - app name
-   */
-  loadTemplate (app) {
-    switch (app) {
-      case 'chat':
-        return chatTemp
-      case 'memory':
-        return memoryTemp
-      case 'todo':
-        return todoTemp
     }
   }
 
