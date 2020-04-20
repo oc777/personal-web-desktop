@@ -211,6 +211,15 @@ span.fa {
     text-decoration: underline;
 }
 
+.todo-window ol li span {
+    position: absolute;
+    right: 20px;
+}
+
+.todo-window ol i {
+    vertical-align: middle;
+}
+
 .todo-window ul li {
     display: flex;
     justify-content: space-between;
