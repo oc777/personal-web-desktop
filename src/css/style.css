@@ -254,3 +254,59 @@ li .fa-times-circle:hover {
 .fa-circle:hover {
     color: green;
 }
+
+/* MEMORY */
+.memory.window {
+    width: 340px;
+    height: 400px;
+}
+.memory-window .game {
+    margin: 20px auto;
+    width: 330px;
+    height: 330px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.memory-window .game .brick {
+    background-color: #252e4a;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+.memory-window .game .brick:hover {
+    background-color: #192034;
+}
+.memory-window .game .brick .fa-question {
+    color: rgb(230, 230, 230);
+}
+
+.memory-window .game.sq4 .brick {
+    width: 80px;
+    height: 80px;
+}
+.memory-window .game.sq4 .brick i {
+    font-size: 40px;
+    line-height: 80px;
+}
+
+.memory-window .game.sq6 .brick {
+    width: 53px;
+    height: 53px;
+}
+.memory-window .game.sq6 .brick i {
+    font-size: 30px;
+    line-height: 53px;
+}
+
+.memory-window .game.sq8 .brick {
+    width: 40px;
+    height: 40px;
+}
+.memory-window .game.sq8 .brick i {
+    font-size: 20px;
+    line-height: 40px;
+}
+
