@@ -37,6 +37,31 @@ class Memory {
     this.gameDiv.addEventListener('keydown', e => {
       if (e.keyCode === 13) this.clickHandler(e)
     })
+    this.el.querySelector('select').addEventListener('change', e => {
+      console.log(e.target.value)
+      switch (e.target.value) {
+        case '1':
+          this.rows = 4
+          this.cols = 4
+          break
+        case '2':
+          this.rows = 4
+          this.cols = 6
+          break
+        case '3':
+          this.rows = 6
+          this.cols = 6
+      }
+      console.log(this.rows)
+      console.log(this.cols)
+      console.log(this.boardSize)
+      if (this.rows * this.cols !== this.boardSize) {
+        console.log('remove')
+        this.gameDiv.textContent = ''
+        this.drawBoard()
+        this.selectBricks()
+      }
+    })
   }
 
   clickHandler (event) {
@@ -66,9 +91,9 @@ class Memory {
 
   // dynamically draw the board
   drawBoard () {
-    this.gameDiv.classList.add(`sq${this.rows}`)
+    this.gameDiv.setAttribute('class', `game sq${this.cols}`)
     const brickTemp = this.el.querySelector('#brick-temp')
-    this.boardSize = this.rows * this.rows
+    this.boardSize = this.cols * this.rows
     for (let i = 0; i < this.boardSize; i++) {
       const node = document.importNode(brickTemp.content, true)
       node.firstElementChild.setAttribute('data-brickIndex', i)
@@ -86,6 +111,8 @@ class Memory {
 
   // create an array of icons/bricks for the game
   selectBricks () {
+    // make sure the bricks array is empty
+    this.bricks = []
     // shuffle the collection
     this.shuffleArray(this.collection)
     // grab pairs of icons/bricks from collection

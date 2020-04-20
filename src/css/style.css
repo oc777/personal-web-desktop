@@ -21,7 +21,7 @@ time, mark, audio, video {
 }
 
 /* make sure to set some focus styles for accessibility */
-:focus {
+*:focus {
     outline: 0;
 }
 
@@ -258,12 +258,11 @@ li .fa-times-circle:hover {
 /* MEMORY */
 .memory.window {
     width: 340px;
-    height: 400px;
+    height: auto;
 }
 .memory-window .game {
     margin: 20px auto;
     width: 330px;
-    height: 330px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -276,6 +275,7 @@ li .fa-times-circle:hover {
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
+    margin: 1px;
 }
 .memory-window .game .brick:focus {
     background-color: hotpink;
@@ -285,6 +285,9 @@ li .fa-times-circle:hover {
 }
 .memory-window .game .brick .fas.fa-question {
     color: rgb(230, 230, 230);
+}
+.memory-window .game .brick .fas.fa-trophy {
+    color: goldenrod;
 }
 
 .memory-window .game .brick .fas {
@@ -301,12 +304,12 @@ li .fa-times-circle:hover {
 }
 
 .memory-window .game.sq5 .brick {
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
 }
 .memory-window .game.sq5 .brick i {
     font-size: 30px;
-    line-height: 60px;
+    line-height: 65px;
 }
 
 .memory-window .game.sq6 .brick {
@@ -318,3 +321,20 @@ li .fa-times-circle:hover {
     line-height: 53px;
 }
 
+.memory-window .settings {
+    text-align: center;
+    margin: 20px auto;
+    width: 60%;
+}
+
+.memory-window .settings select {
+    height: 35px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+select:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
