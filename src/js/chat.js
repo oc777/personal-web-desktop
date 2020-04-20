@@ -31,6 +31,7 @@ class Chat {
     this.socket.close()
   }
 
+  // render view for username input
   getUsername () {
     // this.el.querySelector('.loading').style.display = 'none'
     this.el.querySelector('.username').style.display = 'flex'
@@ -40,6 +41,7 @@ class Chat {
     })
   }
 
+  // get input value on 'press enter' and pass value to callback
   getInput (input, e, callback) {
     if (e.keyCode === 13 && input.value.length > 1) {
       const msg = input.value
@@ -50,12 +52,14 @@ class Chat {
     }
   }
 
+  // save username
   saveUsername (name) {
     this.username = name
     window.localStorage.setItem('username', this.username)
     this.connect()
   }
 
+  // connect to server
   connect () {
     // redraw the window
     // this.el.querySelector('.body .loading').style.display = 'none'
@@ -88,6 +92,7 @@ class Chat {
     })
   }
 
+  // send message through ws
   sendMessage (text) {
     // this.socket.send(JSON.stringify(data))
     // prepare msg object
@@ -101,6 +106,7 @@ class Chat {
     this.socket.send(JSON.stringify(data))
   }
 
+  // render incoming msg
   printMessage (msg) {
     // console.log(msg)
     const conversation = this.el.querySelector('.conversation')
@@ -115,6 +121,7 @@ class Chat {
     conversation.scrollTop = conversation.scrollHeight
   }
 
+  // create time stamp format HH:MM
   timestamp () {
     const date = new Date()
     let hrs = date.getHours()
@@ -124,6 +131,7 @@ class Chat {
     return `${hrs}:${min}`
   }
 
+  // translate smileys to unicode emoji
   showEmoji (txt) {
     // console.log(txt)
     let msg = txt

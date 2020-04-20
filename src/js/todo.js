@@ -8,7 +8,6 @@
  * @constructor
  *
  * @todo go back from todo items to lists overview
- * @todo comment code
  * @todo rm event listeners?
  */
 class Todo {
@@ -110,6 +109,8 @@ class Todo {
       node.querySelector('li').setAttribute('id', id)
       node.querySelector('p').textContent = txt
 
+      // if todo 'done' move it to the end of the list
+      // else - beginning
       status === 'pending'
         ? list.prepend(node)
         : list.appendChild(node)
@@ -173,8 +174,11 @@ class Todo {
     })
   }
 
+  // Manage todo item on the list
   manageTodo (el) {
+    // id of todo
     const id = el.parentNode.id
+
     if (el.className === 'far fa-circle') {
       // set item as done
       el.setAttribute('class', 'far fa-check-circle')
@@ -195,6 +199,7 @@ class Todo {
     }
   }
 
+  // Update todo status in memory and storage
   updateStatus (todoId, status) {
     // update class obj first
     const i = this.todoItems.findIndex(x => x.id === parseInt(todoId))
@@ -206,6 +211,7 @@ class Todo {
     window.localStorage.setItem(this.todoListId, JSON.stringify(this.todoItems))
   }
 
+  // delete list with connected todo items from memory and storage
   deleteList (li) {
     // delete from lists
     const i = this.todoLists.findIndex(x => x.id === parseInt(li.id))
