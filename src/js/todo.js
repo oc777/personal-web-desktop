@@ -6,6 +6,10 @@
 /**
  * TODO app
  * @constructor
+ *
+ * @todo go back from todo items to lists overview
+ * @todo comment code
+ * @todo rm event listeners?
  */
 class Todo {
   constructor (element) {
