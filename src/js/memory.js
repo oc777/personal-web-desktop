@@ -87,6 +87,21 @@ class Memory {
 
   turnBrick (index, el) {
     el.setAttribute('class', `fas fa-${this.bricks[index]}`)
+
+    if (!this.turned1) {
+      this.turned1 = el.getAttribute('class')
+      console.log(this.turned1)
+    } else {
+      this.turned2 = el.getAttribute('class')
+      console.log(this.turned2)
+
+      if (this.turned1 === this.turned2) {
+        console.log('Pair!')
+      } else {
+        this.turned1 = undefined
+        this.turned2 = undefined
+      }
+    }
   }
 }
 
