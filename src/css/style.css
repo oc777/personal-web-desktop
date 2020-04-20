@@ -292,6 +292,15 @@ li .fa-times-circle:hover {
     line-height: 80px;
 }
 
+.memory-window .game.sq5 .brick {
+    width: 60px;
+    height: 60px;
+}
+.memory-window .game.sq5 .brick i {
+    font-size: 30px;
+    line-height: 60px;
+}
+
 .memory-window .game.sq6 .brick {
     width: 53px;
     height: 53px;
@@ -299,14 +308,5 @@ li .fa-times-circle:hover {
 .memory-window .game.sq6 .brick i {
     font-size: 30px;
     line-height: 53px;
-}
-
-.memory-window .game.sq8 .brick {
-    width: 40px;
-    height: 40px;
-}
-.memory-window .game.sq8 .brick i {
-    font-size: 20px;
-    line-height: 40px;
 }
 

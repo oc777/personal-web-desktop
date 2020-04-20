@@ -14,7 +14,11 @@ class Memory {
     this.cols = cols || 4
     this.board = 0
     this.bricks = []
-    this.collection = ['atom', 'bath', 'bug', 'code', 'coffee', 'globe', 'keyboard', 'robot', 'terminal', 'rocket']
+    this.collection = [
+      'atom', 'bath', 'bug', 'code', 'coffee', 'meteor',
+      'keyboard', 'robot', 'terminal', 'rocket', 'sitemap', 'code-branch',
+      'user-astronaut', 'satellite', 'user-secret', 'cat', 'dog', 'frog'
+    ]
     this.turned1 = undefined
     this.turned2 = undefined
     this.gameDiv = undefined
