@@ -28,19 +28,16 @@ class Todo {
 
     // listen to clicks on all elements
     this.el.addEventListener('click', e => {
-      console.log(e)
+      // console.log(e)
       if (e.target.closest('ol')) {
         // ol - todo lists
-        console.log('todo lists')
         if (e.target.className === 'far fa-times-circle') {
-          console.log('delete!')
           this.deleteList(e.target.parentNode.parentNode)
         } else {
           this.openList(e.target.id, e.target.innerText)
         }
       } else if (e.target.closest('.todo-list') && e.target.nodeName !== 'P') {
         // ul - todo items in a specific list
-        console.log('todo items')
         this.manageTodo(e.target)
       }
     })
@@ -57,7 +54,6 @@ class Todo {
       const msg = input.value
       e.preventDefault()
       input.value = ''
-      console.log(e.target.name)
       callback(msg, e)
     }
   }
@@ -130,7 +126,6 @@ class Todo {
     }
     this.printListEl('ul', todo, todoItem.id, 'pending')
     this.todoItems.push(todoItem)
-    console.log(this.todoItems)
     window.localStorage.setItem(this.todoListId, JSON.stringify(this.todoItems))
   }
 
@@ -138,8 +133,6 @@ class Todo {
   getAllTodoLists () {
     const todoLists = window.localStorage.getItem('todoLists')
     const lists = JSON.parse(todoLists)
-    console.log(lists)
-
     lists.forEach(list => this.printListEl('ol', list.title, list.id))
 
     return lists
@@ -181,7 +174,6 @@ class Todo {
   }
 
   manageTodo (el) {
-    console.log(el)
     const id = el.parentNode.id
     if (el.className === 'far fa-circle') {
       // set item as done
@@ -215,7 +207,6 @@ class Todo {
   }
 
   deleteList (li) {
-    console.log(li)
     // delete from lists
     const i = this.todoLists.findIndex(x => x.id === parseInt(li.id))
     this.todoLists.splice(i, 1)
