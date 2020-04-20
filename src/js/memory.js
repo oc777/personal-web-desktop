@@ -28,7 +28,8 @@ class Memory {
     console.log('game on')
     this.gameDiv = this.el.querySelector('.game')
     this.drawBoard()
-    this.shuffleCollection()
+    this.shuffleArray(this.collection)
+    this.selectBricks()
   }
 
   drawBoard () {
@@ -41,12 +42,19 @@ class Memory {
     }
   }
 
-  shuffleCollection () {
-    for (let i = this.collection.length - 1; i > 0; i--) {
+  shuffleArray (array) {
+    for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [this.collection[i], this.collection[j]] = [this.collection[j], this.collection[i]]
+      [array[i], array[j]] = [array[j], array[i]]
     }
-    console.log(this.collection)
+  }
+
+  selectBricks () {
+    for (let i = 0; i < this.board / 2; i++) {
+      this.bricks.push(this.collection[i])
+      this.bricks.push(this.collection[i])
+    }
+    this.shuffleArray(this.bricks)
   }
 }
 
