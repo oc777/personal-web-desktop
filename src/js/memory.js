@@ -28,8 +28,27 @@ class Memory {
     console.log('game on')
     this.gameDiv = this.el.querySelector('.game')
     this.drawBoard()
-    this.shuffleArray(this.collection)
     this.selectBricks()
+
+    this.gameDiv.addEventListener('click', e => {
+      const brickIndex = parseInt(e.target.closest('.brick').getAttribute('data-brickIndex'))
+      let icon
+
+      switch (e.target.nodeName) {
+        case 'DIV':
+          icon = e.target.firstElementChild.firstElementChild
+          break
+        case 'A':
+          icon = e.target.firstElementChild
+          break
+        default:
+          icon = e.target
+      }
+      console.log(e.target)
+      console.log(icon)
+
+      this.turnBrick(brickIndex, icon)
+    })
   }
 
   drawBoard () {
@@ -38,6 +57,7 @@ class Memory {
     this.board = this.rows * this.rows
     for (let i = 0; i < this.board; i++) {
       const node = document.importNode(brickTemp.content, true)
+      node.firstElementChild.setAttribute('data-brickIndex', i)
       this.gameDiv.appendChild(node)
     }
   }
@@ -50,11 +70,16 @@ class Memory {
   }
 
   selectBricks () {
+    this.shuffleArray(this.collection)
     for (let i = 0; i < this.board / 2; i++) {
       this.bricks.push(this.collection[i])
       this.bricks.push(this.collection[i])
     }
     this.shuffleArray(this.bricks)
+  }
+
+  turnBrick (index, el) {
+    el.setAttribute('class', `fas fa-${this.bricks[index]}`)
   }
 }
 

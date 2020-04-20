@@ -279,8 +279,12 @@ li .fa-times-circle:hover {
 .memory-window .game .brick:hover {
     background-color: #192034;
 }
-.memory-window .game .brick .fa-question {
+.memory-window .game .brick .fas.fa-question {
     color: rgb(230, 230, 230);
+}
+
+.memory-window .game .brick .fas {
+    color: rgb(169, 133, 247);
 }
 
 .memory-window .game.sq4 .brick {
