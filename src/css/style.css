@@ -271,10 +271,14 @@ li .fa-times-circle:hover {
 }
 
 .memory-window .game .brick {
+    display: block;
     background-color: #252e4a;
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
+}
+.memory-window .game .brick:focus {
+    background-color: hotpink;
 }
 .memory-window .game .brick:hover {
     background-color: #192034;

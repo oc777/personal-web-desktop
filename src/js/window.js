@@ -26,7 +26,7 @@ class Window {
     const div = document.createElement('div')
     div.setAttribute('class', `window ${app}`)
     // enables focus/blur events on divs
-    div.setAttribute('tabindex', this.id)
+    div.setAttribute('tabindex', '0')
     const template = require(`./templates/${app}-temp.html`)
     div.innerHTML = template
     this.el = div
