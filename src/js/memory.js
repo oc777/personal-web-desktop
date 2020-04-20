@@ -28,6 +28,7 @@ class Memory {
     console.log('game on')
     this.gameDiv = this.el.querySelector('.game')
     this.drawBoard()
+    this.shuffleCollection()
   }
 
   drawBoard () {
@@ -38,6 +39,14 @@ class Memory {
       const node = document.importNode(brickTemp.content, true)
       this.gameDiv.appendChild(node)
     }
+  }
+
+  shuffleCollection () {
+    for (let i = this.collection.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.collection[i], this.collection[j]] = [this.collection[j], this.collection[i]]
+    }
+    console.log(this.collection)
   }
 }
 
