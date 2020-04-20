@@ -7,7 +7,6 @@
  * TODO app
  * @constructor
  *
- * @todo go back from todo items to lists overview
  * @todo rm event listeners?
  */
 class Todo {
@@ -38,6 +37,10 @@ class Todo {
       } else if (e.target.closest('.todo-list') && e.target.nodeName !== 'P') {
         // ul - todo items in a specific list
         this.manageTodo(e.target)
+      } else if (e.target.closest('div.todos') && e.target.nodeName === 'I') {
+        // icon - back to lists
+        this.el.querySelector('.todos').textContent = ''
+        this.el.querySelector('.lists').style.display = 'block'
       }
     })
 

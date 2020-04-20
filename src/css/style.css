@@ -203,6 +203,7 @@ span.fa:hover {
     color: gray;
     text-align: center;
     font-weight: bold;
+    line-height: 20px;
 }
 
 .todo-window input {
@@ -254,6 +255,22 @@ li .fa-times-circle:hover {
 .fa-circle:hover {
     color: green;
 }
+
+.todo-window .todos {
+    position: relative;
+}
+.todo-window .todos .fas.fa-arrow-circle-left {
+    font-size: 20px;
+    position: absolute;
+    cursor: pointer;
+}
+.todo-window ul li.completed {
+    color: gray;
+}
+.todo-window ul li.completed p {
+    text-decoration: line-through;
+}
+
 
 /* MEMORY */
 .memory.window {
