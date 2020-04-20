@@ -31,24 +31,31 @@ class Memory {
     this.selectBricks()
 
     this.gameDiv.addEventListener('click', e => {
-      const brickIndex = parseInt(e.target.closest('.brick').getAttribute('data-brickIndex'))
-      let icon
-
-      switch (e.target.nodeName) {
-        case 'DIV':
-          icon = e.target.firstElementChild.firstElementChild
-          break
-        case 'A':
-          icon = e.target.firstElementChild
-          break
-        default:
-          icon = e.target
-      }
-      console.log(e.target)
-      console.log(icon)
-
-      this.turnBrick(brickIndex, icon)
+      this.clickHandler(e)
     })
+    this.gameDiv.addEventListener('keydown', e => {
+      if (e.keyCode === 13) this.clickHandler(e)
+    })
+  }
+
+  clickHandler (event) {
+    const brickIndex = parseInt(event.target.closest('.brick').getAttribute('data-brickIndex'))
+    let icon
+
+    switch (event.target.nodeName) {
+      case 'DIV':
+        icon = event.target.firstElementChild.firstElementChild
+        break
+      case 'A':
+        icon = event.target.firstElementChild
+        break
+      default:
+        icon = event.target
+    }
+    // console.log(event.target)
+    // console.log(icon)
+
+    this.turnBrick(brickIndex, icon)
   }
 
   drawBoard () {
