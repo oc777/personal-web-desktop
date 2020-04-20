@@ -13,6 +13,8 @@ class Memory {
     this.rows = rows || 4
     this.cols = cols || 4
     this.boardSize = 16
+    this.attempts = 0
+    this.pairs = 0
     this.bricks = []
     this.collection = [
       'atom', 'bath', 'bug', 'code', 'coffee', 'meteor',
@@ -38,35 +40,20 @@ class Memory {
       if (e.keyCode === 13) this.clickHandler(e)
     })
     this.el.querySelector('select').addEventListener('change', e => {
-      console.log(e.target.value)
-      switch (e.target.value) {
-        case '1':
-          this.rows = 4
-          this.cols = 4
-          break
-        case '2':
-          this.rows = 4
-          this.cols = 6
-          break
-        case '3':
-          this.rows = 6
-          this.cols = 6
-      }
-      console.log(this.rows)
-      console.log(this.cols)
-      console.log(this.boardSize)
-      if (this.rows * this.cols !== this.boardSize) {
-        console.log('remove')
-        this.gameDiv.textContent = ''
-        this.drawBoard()
-        this.selectBricks()
-      }
+      this.selectHandler(e)
     })
   }
 
+  // Handler for click events on game board
   clickHandler (event) {
+    // check if reset link was clicked
+    if (event.target.id === 'reset') {
+      event.preventDefault()
+      this.reset()
+      return
+    }
+
     const brickIndex = parseInt(event.target.closest('.brick').getAttribute('data-brickIndex'))
-    console.log(this.isClickable)
     // check if target element or its parent has 'data-brickIndex'
     // check if the pair match is in progress
     if (Number.isInteger(brickIndex) && this.isClickable) {
@@ -87,6 +74,46 @@ class Memory {
 
       this.turnBrick(brickIndex, icon)
     }
+  }
+
+  // handler for events on select element
+  // (changing board size)
+  selectHandler (event) {
+    switch (event.target.value) {
+      case '1':
+        this.rows = 4
+        this.cols = 4
+        break
+      case '2':
+        this.rows = 4
+        this.cols = 6
+        break
+      case '3':
+        this.rows = 6
+        this.cols = 6
+    }
+    // console.log(this.rows)
+    // console.log(this.cols)
+    // console.log(this.boardSize)
+
+    // reset the game only if new boar size was selected
+    if (this.rows * this.cols !== this.boardSize) {
+      this.reset()
+    }
+  }
+
+  // resets the state of the game and redraws the board
+  reset () {
+    this.attempts = 0
+    this.pairs = 0
+    this.bricks = []
+    this.turned1 = undefined
+    this.turned2 = undefined
+    this.isClickable = true
+
+    this.gameDiv.textContent = ''
+    this.drawBoard()
+    this.selectBricks()
   }
 
   // dynamically draw the board
@@ -111,8 +138,6 @@ class Memory {
 
   // create an array of icons/bricks for the game
   selectBricks () {
-    // make sure the bricks array is empty
-    this.bricks = []
     // shuffle the collection
     this.shuffleArray(this.collection)
     // grab pairs of icons/bricks from collection
@@ -145,11 +170,14 @@ class Memory {
       this.turned2 = el
       console.log(this.turned2)
 
+      this.attempts++
+
       // disable clicks on the board
       this.isClickable = false
       // check for a match
       if (this.turned1.getAttribute('class') === this.turned2.getAttribute('class')) {
         console.log('Pair!')
+        this.pairs++
         // mark the pair
         window.setTimeout(() => {
           // <i class="fas fa-trophy"></i>
@@ -167,6 +195,8 @@ class Memory {
           // enable clicks on the board
           this.isClickable = true
         }, 500)
+
+        if (this.boardSize / 2 === this.pairs) this.showFinalView()
       } else {
         // not a pair
         window.setTimeout(() => {
@@ -182,6 +212,14 @@ class Memory {
         }, 500)
       }
     }
+  }
+
+  // render when game is won
+  showFinalView () {
+    const finalTemp = this.el.querySelector('#final-temp')
+    const node = document.importNode(finalTemp.content, true)
+    node.querySelector('#attempts').textContent = this.attempts
+    this.gameDiv.appendChild(node)
   }
 }
 
