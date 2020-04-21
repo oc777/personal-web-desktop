@@ -388,3 +388,20 @@ select:focus {
 .memory-window #reset:hover {
     text-decoration: underline;
 }
+
+/* context menu */
+#context-menu {
+    position: absolute;
+    width: 120px;
+    display: none;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.85);
+    z-index: 8000;
+    color: white;
+    border-radius: 2px;
+}
+
+#quit-app:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
