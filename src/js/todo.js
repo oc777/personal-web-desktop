@@ -185,6 +185,7 @@ class Todo {
     if (el.className === 'far fa-circle') {
       // set item as done
       el.setAttribute('class', 'far fa-check-circle')
+      el.parentNode.setAttribute('class', 'completed')
       // move to the end of the list
       const li = el.closest('li')
       const clone = li.cloneNode(true)
